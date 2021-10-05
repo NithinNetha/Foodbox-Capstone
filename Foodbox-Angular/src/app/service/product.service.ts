@@ -7,8 +7,13 @@ import { BehaviorSubject,Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
+  public login = new BehaviorSubject<any>([]);
   private baseURL = "http://localhost:8090/products";
   constructor(private httpClient: HttpClient) { }
+  
+  getLogin(){
+    return this.login.asObservable();
+  }
 
   getProductList():Observable<Product[]>{
     return this.httpClient.get<Product[]>(this.baseURL);

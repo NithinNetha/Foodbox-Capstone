@@ -58,6 +58,7 @@
                     <p></p>
                     <br>
                 </div>
+                <button *ngIf="login==0" class="btn btn-primary" (click)="showToLogin()">Add to Cart</button>
                 <button *ngIf="login==1" class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button>
             </div>
         </ng-container>
