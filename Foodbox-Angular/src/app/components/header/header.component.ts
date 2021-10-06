@@ -29,9 +29,11 @@ export class HeaderComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit(): void {
-    this.cartService.getCartItemList().subscribe(res=>{
-      this.totalItem=res.length;
+    sessionStorage.setItem('cust_email',null);
+    this.cartService.deleteAllCart().subscribe(res=>{
+      console.log('Deleted all')
     })
+    this.getLength();
     this.productService.getProductList().subscribe(res=>{
       this.productList=res;
     })
@@ -44,7 +46,12 @@ export class HeaderComponent implements OnInit {
       address:['']
     })
   }
-
+  private getLength(){
+    this.cartService.getCartItemList().subscribe(res=>{
+      this.totalItem=res.length;
+      console.log('length '+this.totalItem);
+    });
+  }
   addCustomer(){
     this.customer.email=this.formValue.value.email;
     this.customer.password=this.formValue.value.password;

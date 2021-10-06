@@ -18,4 +18,8 @@ export class ProductService {
   getProductList():Observable<Product[]>{
     return this.httpClient.get<Product[]>(this.baseURL);
   }
+
+  public getProductById(id : number) : Observable<Product> {
+    return this.httpClient.get<Product>(`${this.baseURL}/${id}`);
+  }
 }
