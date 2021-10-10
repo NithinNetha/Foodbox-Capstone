@@ -25,7 +25,7 @@ public class ProductController {
 	
 	@GetMapping("/products")
 	public List<Product> getAllProducts(){
-		return productRepositpory.findByOrderByCategoryAsc();
+		return productRepositpory.findIfAvail();
 	}
 	
 	@PostMapping("/products")
@@ -38,5 +38,30 @@ public class ProductController {
 		Product product=productRepositpory.findById(id)
 				.orElseThrow(()->new ResourceNotFoundException("Product Not Found with"+id));
 		return ResponseEntity.ok(product);
+	}
+	
+	@GetMapping("products/search/{keyword}")
+	public List<Product> getSearchProducts(@PathVariable String keyword){
+		return productRepositpory.homeSearch(keyword);
+	}
+	
+	@GetMapping("products/chinese")
+	public List<Product> getChinese(){
+		return productRepositpory.getChinese();
+	}
+	
+	@GetMapping("products/indian")
+	public List<Product> getIndian(){
+		return productRepositpory.getIndian();
+	}
+	
+	@GetMapping("products/mexican")
+	public List<Product> getMexican(){
+		return productRepositpory.getMexican();
+	}
+	
+	@GetMapping("products/italian")
+	public List<Product> getItalian(){
+		return productRepositpory.getItalian();
 	}
 }

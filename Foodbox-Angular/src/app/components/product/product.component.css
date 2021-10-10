@@ -32,17 +32,11 @@
 
 .form-control{
     border-radius: 3px;
-    width: 500px;
+    width: 350px;
     margin-left: 50px;
     margin-top: 10px;
 }
-.search-icon{
-    position: absolute;
-    z-index: 10;
-    right:16%;
-    top: 21px;
-    color:blue;
-}
+
 .carousel-item {
     height:300px;
     min-height: 350px;
@@ -52,3 +46,8 @@
     -o-background-size: cover;
     background-size: cover
 }
+/* .addcart{
+    position: absolute;
+    bottom: 5px;
+    display: table;
+} */

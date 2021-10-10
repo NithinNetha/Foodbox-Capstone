@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="showHeader==1">
     <div class="navbar shadow-sm">
         <div class="container">
             <div class="navbar-brand align-item-center d-flex">
@@ -17,9 +17,9 @@
             </div>
         </div>
 
-        <button *ngIf="login==1" routerLink="cart" class="btn">
+        <button *ngIf="login==1" routerLink="cart" class="btn cart">
             <i style="font-size: 30px;color:#bf1e2e;" class="fas fa-cart-plus"></i>
-            <div style="font-size: 15px;color: #607d8b; padding: 0;" class="badge">{{totalItem}}</div>
+            <!-- <div style="font-size: 15px;color: #607d8b; padding: 0;" class="badge">{{totalItem}}</div> -->
         </button>
     </div>
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

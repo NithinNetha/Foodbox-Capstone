@@ -1,3 +1,5 @@
+import { LogService } from './../../service/log.service';
+import { Cart } from './../../model/cart';
 import { CustomerService } from './../../service/customer.service';
 import { CartService } from './../../service/cart.service';
 import { Customer } from './../../model/customer';
@@ -12,6 +14,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  showHeader:number=0;
   message:string='';
   formValue !: FormGroup;
   customer:Customer = new Customer();
@@ -21,19 +24,28 @@ export class HeaderComponent implements OnInit {
     password:''};
   login:number=0;
   productList:any;
+  public cart:Cart=new Cart();
+  public products:Cart[];
   public totalItem:number=0;
   constructor(private cartService:CartService, 
     private productService:ProductService,
     private customerService:CustomerService,
+    private logService:LogService,
     private formbuilder:FormBuilder,
     private router:Router) { }
 
   ngOnInit(): void {
+    this.logService.headerId$.subscribe((id)=>{
+      this.showHeader=id;
+    })
     sessionStorage.setItem('cust_email',null);
     this.cartService.deleteAllCart().subscribe(res=>{
-      console.log('Deleted all')
+      console.log('deletedAllCart')
     })
-    this.getLength();
+    this.cartService.getProduct().subscribe(res=>{
+      this.products=res;
+      this.totalItem=this.products.length;
+    });
     this.productService.getProductList().subscribe(res=>{
       this.productList=res;
     })
@@ -46,12 +58,7 @@ export class HeaderComponent implements OnInit {
       address:['']
     })
   }
-  private getLength(){
-    this.cartService.getCartItemList().subscribe(res=>{
-      this.totalItem=res.length;
-      console.log('length '+this.totalItem);
-    });
-  }
+
   addCustomer(){
     this.customer.email=this.formValue.value.email;
     this.customer.password=this.formValue.value.password;
@@ -64,6 +71,7 @@ export class HeaderComponent implements OnInit {
       this.productService.login.next(1);
       sessionStorage.setItem('cust_email',this.customer.email);
       sessionStorage.setItem('cust_name',this.customer.name);
+      this.logService.sendId('cust_email');
       let ref = document.getElementById('Rcancel')
       ref?.click();
       this.formValue.reset();
@@ -93,6 +101,7 @@ export class HeaderComponent implements OnInit {
         this.login=1;
         this.productService.login.next(1);
         sessionStorage.setItem('cust_email',this.loginData.email);
+        this.logService.sendId('cust_email');
         let ref = document.getElementById('Lcancel')
       ref?.click();
       this.formValue.reset();
@@ -105,6 +114,8 @@ export class HeaderComponent implements OnInit {
 
   CustomerLogout(){
     this.login=0;
+    this.cartService.deleteAllCart();
     sessionStorage.setItem('cust_email',null);
+    this.logService.sendId('');
   }
 }

@@ -35,15 +35,12 @@ public class CartController {
 		}
 		else {
 			grandTotal=(float) session.getAttribute("grandTotal");
-			System.out.println("From session"+grandTotal);
 		}
 		List<Cart> cartList = cartRepository.findAll();
 		for(Cart temp:cartList) {
 			if(temp.getProduct().getId()==cart.getProduct().getId()) {
 				int tempQuantity = 1+temp.getQuantity();
-				System.out.println("Before"+grandTotal);
 				grandTotal=grandTotal+temp.getPrice();
-				System.out.println("After"+grandTotal);
 				session.setAttribute("grandTotal", grandTotal);
 				temp.setQuantity(tempQuantity);
 				temp.setPrice((temp.getProduct().getPrice()*tempQuantity));
@@ -57,9 +54,7 @@ public class CartController {
 		cart.setQuantity(1);
 		cart.setPrice(cart.getProduct().getPrice());
 		grandTotal=grandTotal+cart.getProduct().getPrice();
-		System.out.println(grandTotal);
 		session.setAttribute("grandTotal", grandTotal);
-		System.out.println("sessionprit "+session.getAttribute("grandTotal"));
 		return cartRepository.save(cart);
 	}
 

@@ -22,4 +22,24 @@ export class ProductService {
   public getProductById(id : number) : Observable<Product> {
     return this.httpClient.get<Product>(`${this.baseURL}/${id}`);
   }
+
+  public getProductSearch(keyword:string):Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseURL}/search/${keyword}`);
+  }
+
+  getChinese():Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseURL}/chinese`);
+  }
+
+  getIndian():Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseURL}/indian`);
+  }
+
+  getMexican():Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseURL}/mexican`);
+  }
+
+  getItalian():Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseURL}/italian`);
+  }
 }

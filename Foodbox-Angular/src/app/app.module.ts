@@ -3,11 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
+import { MatSortModule } from '@angular/material/sort';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CartComponent } from './components/cart/cart.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -15,13 +20,18 @@ import { CartComponent } from './components/cart/cart.component';
     HeaderComponent,
     ProductComponent,
     CartComponent,
+    AdminLoginComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

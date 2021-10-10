@@ -13,24 +13,12 @@ export class CartService {
   private baseURL = "http://localhost:8090/carts";
   constructor(private httpClient:HttpClient) { }
 
-  getProduct(){
-    return this.productList.asObservable();
-  }
-
   addToCart(cart:any):Observable<any>{
-    this.cartItemList.push(cart);
-    this.productList.next(this.cartItemList);
-    this.getTotalPrice(); 
     return this.httpClient.post(`${this.baseURL}`, cart);
   }
-  
-  getTotalPrice() :number{
-    let grandTotal = 0;
-    this.cartItemList.map((a:any)=>{
-      console.log('getTot a.price '+a.price);
-      grandTotal += a.price;
-    })
-    return grandTotal;
+
+  getProduct(){
+    return this.productList.asObservable();
   }
 
   getCartItemList():Observable<Cart[]>{
