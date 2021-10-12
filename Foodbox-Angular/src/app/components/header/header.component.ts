@@ -71,7 +71,7 @@ export class HeaderComponent implements OnInit {
       this.productService.login.next(1);
       sessionStorage.setItem('cust_email',this.customer.email);
       sessionStorage.setItem('cust_name',this.customer.name);
-      this.logService.sendId('cust_email');
+      this.logService.sendId(this.customer.email);
       let ref = document.getElementById('Rcancel')
       ref?.click();
       this.formValue.reset();

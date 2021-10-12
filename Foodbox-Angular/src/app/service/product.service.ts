@@ -9,6 +9,7 @@ import { BehaviorSubject,Observable } from 'rxjs';
 export class ProductService {
   public login = new BehaviorSubject<any>([]);
   private baseURL = "http://localhost:8090/products";
+  private adminURL= "http://localhost:8090/AdminProducts";
   constructor(private httpClient: HttpClient) { }
   
   getLogin(){
@@ -16,7 +17,7 @@ export class ProductService {
   }
 
   getProductList():Observable<Product[]>{
-    return this.httpClient.get<Product[]>(this.baseURL);
+    return this.httpClient.get<Product[]>(`${this.baseURL}/cust`);
   }
 
   public getProductById(id : number) : Observable<Product> {
@@ -41,5 +42,21 @@ export class ProductService {
 
   getItalian():Observable<Product[]>{
     return this.httpClient.get<Product[]>(`${this.baseURL}/italian`);
+  }
+
+  getFullProductList():Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseURL}/Admin`);
+  }
+
+  addProduct(product:Product):Observable<Object>{
+    return this.httpClient.post(`${this.baseURL}`,product);
+  }
+
+  updateProduct(id:number,product:Product):Observable<Object>{
+    return this.httpClient.put<Product>(`${this.baseURL}/${id}`,product);
+  }
+
+  deleteProduct(id:number):Observable<Product>{
+    return this.httpClient.delete<Product>(`${this.baseURL}/${id}`);
   }
 }

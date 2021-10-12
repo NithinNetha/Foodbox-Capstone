@@ -37,6 +37,7 @@ export class AdminLoginComponent implements OnInit {
     this.adminService.adminLogin(this.loginData).subscribe(data=>{
       this.auth=data;
       if(this.auth==true){
+        this.logService.sendAdmin(this.loginData.username);
         this.router.navigate(['/adminDashboard']);
       }else{
         this.error="Username or password incorrect"

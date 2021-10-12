@@ -1,13 +1,17 @@
 package com.foodbox.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,49 +23,91 @@ import com.foodbox.exception.ResourceNotFoundException;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class ProductController {
-	
+
 	@Autowired
-	private ProductRepository productRepositpory;
-	
-	@GetMapping("/products")
-	public List<Product> getAllProducts(){
-		return productRepositpory.findIfAvail();
+	private ProductRepository productRepository;
+
+	@GetMapping("/products/Admin")
+	public List<Product> getAdminProducts() {
+		return productRepository.findAll();
 	}
-	
+
+	@GetMapping("/products/cust")
+	public List<Product> getAllProducts() {
+		return productRepository.findIfAvail();
+	}
+
 	@PostMapping("/products")
 	public Product addProduct(@RequestBody Product product) {
-		return productRepositpory.save(product);
+		int min = 10000;
+		int max = 99999;
+		int b = (int) (Math.random() * (max - min + 1) + min);
+		product.setId(b);
+		float temp = (product.getActualPrice()) * (product.getDiscount() / 100);
+		float price = product.getActualPrice() - temp;
+		product.setPrice(price);
+		return productRepository.save(product);
 	}
 	
+	@PutMapping("/products/{id}")
+	public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails){
+		Product product = productRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Employee Not Found with " + id));
+		product.setName(productDetails.getName());
+		product.setDesc(productDetails.getDesc());
+		product.setCategory(productDetails.getCategory());
+		product.setImagepath(productDetails.getImagepath());
+		product.setActualPrice(productDetails.getActualPrice());
+		product.setDiscount(productDetails.getDiscount());
+		product.setAvail(productDetails.getAvail());
+		float temp = (product.getActualPrice()) * (product.getDiscount() / 100);
+		float price = product.getActualPrice() - temp;
+		product.setPrice(price);
+		
+		Product updatedProd = productRepository.save(product);
+		return ResponseEntity.ok(updatedProd);
+		
+	}
+
+	@DeleteMapping("/products/{id}")
+	public ResponseEntity<Map<String, Boolean>> deleteProduct(@PathVariable Long id) {
+		Product product = productRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Employee Not Found with " + id));
+		productRepository.delete(product);
+		Map<String, Boolean> map = new HashMap<>();
+		map.put("deleted", Boolean.TRUE);
+		return ResponseEntity.ok(map);
+	}
+
 	@GetMapping("products/{id}")
 	public ResponseEntity<Product> getProductById(@PathVariable long id) {
-		Product product=productRepositpory.findById(id)
-				.orElseThrow(()->new ResourceNotFoundException("Product Not Found with"+id));
+		Product product = productRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Product Not Found with " + id));
 		return ResponseEntity.ok(product);
 	}
-	
+
 	@GetMapping("products/search/{keyword}")
-	public List<Product> getSearchProducts(@PathVariable String keyword){
-		return productRepositpory.homeSearch(keyword);
+	public List<Product> getSearchProducts(@PathVariable String keyword) {
+		return productRepository.homeSearch(keyword);
 	}
-	
+
 	@GetMapping("products/chinese")
-	public List<Product> getChinese(){
-		return productRepositpory.getChinese();
+	public List<Product> getChinese() {
+		return productRepository.getChinese();
 	}
-	
+
 	@GetMapping("products/indian")
-	public List<Product> getIndian(){
-		return productRepositpory.getIndian();
+	public List<Product> getIndian() {
+		return productRepository.getIndian();
 	}
-	
+
 	@GetMapping("products/mexican")
-	public List<Product> getMexican(){
-		return productRepositpory.getMexican();
+	public List<Product> getMexican() {
+		return productRepository.getMexican();
 	}
-	
+
 	@GetMapping("products/italian")
-	public List<Product> getItalian(){
-		return productRepositpory.getItalian();
+	public List<Product> getItalian() {
+		return productRepository.getItalian();
 	}
 }

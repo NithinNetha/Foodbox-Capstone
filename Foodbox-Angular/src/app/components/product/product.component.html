@@ -35,9 +35,10 @@
                 </div>
             </nav>
             <div class="form-group">
-                <input type="text" class="form-control" name="searchKey" [(ngModel)]="searchKey" (ngModelChange)="Search()" placeholder="Search Product">
+                <input type="text" class="form-control" name="searchKey" [(ngModel)]="searchKey"
+                    (ngModelChange)="Search()" placeholder="Search Product">
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -58,8 +59,10 @@
                     <p></p>
                     <br>
                 </div>
-                <button *ngIf="login==0" class="align-self-end mt-auto btn addcart btn-primary" (click)="showToLogin()">Add to Cart</button>
-                <button *ngIf="login==1" class="align-self-end mt-auto btn addcart btn-primary" (click)="addToCart(item)">Add to Cart</button>
+                <button *ngIf="login==0" class="align-self-end mt-auto btn addcart btn-primary"
+                    (click)="showToLogin()">Add to Cart</button>
+                <button *ngIf="login==1" class="align-self-end mt-auto btn addcart btn-primary"
+                    (click)="addToCart(item)">Add to Cart</button>
             </div>
         </ng-container>
     </div>

@@ -21,6 +21,7 @@ public class AdminController {
 	@Autowired
 	private AdminRepository adminRepository;
 	
+	@SuppressWarnings("rawtypes")
 	@PostMapping("/admin/{username}")
 	public boolean verifyAdminLogin(@RequestBody Map loginData, @PathVariable(name = "username") String username, HttpSession session) {
 		String lusername=(String) loginData.get("username");
