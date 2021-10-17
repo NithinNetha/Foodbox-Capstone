@@ -1,16 +1,22 @@
 package com.foodbox.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.foodbox.exception.ResourceNotFoundException;
 import com.foodbox.model.Customer;
 import com.foodbox.repository.CustomerRepository;
 
@@ -41,5 +47,24 @@ public class CustomerController {
 		}else {
 			return false; 
 		}
+	}
+	
+	@GetMapping("/customers")
+	public List<Customer> getAllCustomers(){
+		return customerRepository.findAll();
+	}
+	
+	@GetMapping("/customers/search/{keyword}")
+	public List<Customer> searchCustomer(@PathVariable String keyword){
+		return customerRepository.searchCustomer(keyword);
+	}
+	
+	@DeleteMapping("/customers/{email}")
+	public ResponseEntity<Map<String, Boolean>> deleteCustomer(@PathVariable String email){
+		Customer customer = customerRepository.findByEmail(email);
+		customerRepository.delete(customer);
+		Map<String, Boolean> map = new HashMap<>();
+		map.put("deleted", Boolean.TRUE);
+		return ResponseEntity.ok(map);
 	}
 }

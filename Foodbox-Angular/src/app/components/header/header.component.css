@@ -13,14 +13,16 @@
     font-size: 64px;
     color: #bf1e2e;
 }
-.btn{
+.btnMain{
     font-size: 20px;
 }
-.btn:hover{
+.btnMain:hover{
     color: #bf1e2e;
 }
 .modal-footer button{
     background-color: #bf1e2e;
     color:white
 }
-
+th{
+    color:#bf1e2e;
+}

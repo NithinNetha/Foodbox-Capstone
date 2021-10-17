@@ -1,3 +1,4 @@
+import { ManageCustomersComponent } from './components/manage-customers/manage-customers.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { ProductComponent } from './components/product/product.component';
@@ -10,7 +11,8 @@ const routes: Routes = [
   {path:'products',component:ProductComponent},
   {path:'cart', component:CartComponent},
   {path:'admin', component:AdminLoginComponent},
-  {path:'adminDashboard', component:AdminDashboardComponent}
+  {path:'adminDashboard', component:AdminDashboardComponent},
+  {path:'manageCustomer',component:ManageCustomersComponent}
 ];
 
 @NgModule({

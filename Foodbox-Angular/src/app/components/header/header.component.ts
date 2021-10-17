@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
+import { Purchase } from 'src/app/model/purchase';
+import { PurchaseService } from 'src/app/service/purchase.service';
 
 @Component({
   selector: 'app-header',
@@ -26,11 +28,13 @@ export class HeaderComponent implements OnInit {
   productList:any;
   public cart:Cart=new Cart();
   public products:Cart[];
+  public activeOrders:Purchase[];
   public totalItem:number=0;
   constructor(private cartService:CartService, 
     private productService:ProductService,
     private customerService:CustomerService,
     private logService:LogService,
+    private purchaseService:PurchaseService,
     private formbuilder:FormBuilder,
     private router:Router) { }
 
@@ -117,5 +121,13 @@ export class HeaderComponent implements OnInit {
     this.cartService.deleteAllCart();
     sessionStorage.setItem('cust_email',null);
     this.logService.sendId('');
+  }
+
+  getActiveOrders(){
+    var email:string;
+    email=sessionStorage.getItem("cust_email");
+    this.purchaseService.getCustomerOrders(email).subscribe(data=>{
+      this.activeOrders=data;
+    })
   }
 }

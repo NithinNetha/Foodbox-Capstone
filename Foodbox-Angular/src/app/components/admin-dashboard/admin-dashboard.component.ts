@@ -58,11 +58,6 @@ export class AdminDashboardComponent implements OnInit {
     const data=this.allProducts.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedProd = data;
-      console.log('this.sortedProd')
-      for(var i=0;i<this.allProducts.length;i++)
-      {
-        console.log(this.sortData[i]);
-      }
       return;
     }
     this.sortedProd=data.sort((a,b)=>{

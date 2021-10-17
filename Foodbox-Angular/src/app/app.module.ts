@@ -13,6 +13,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { ManageCustomersComponent } from './components/manage-customers/manage-customers.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     CartComponent,
     AdminLoginComponent,
     AdminDashboardComponent,
+    ManageCustomersComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,11 +13,11 @@
     font-size: 32px;
     color: #bf1e2e;
 }
-.bthHead{
+.btnHead{
     margin-left: 10px;
 }
 
-.active, .bthHead:hover{
+.active, .btnHead:hover{
     color: #bf1e2e;
 }
 
@@ -31,26 +31,7 @@ hr{
     font-weight: bold;
 }
 
-.AddProd{
-    margin: 10px;
-}
-
-.makeCenter{
-    text-align: center;
-}
-
-.form-check-input{
-    margin-top: 3px;
-}
-
-p{
-    color: red;
-}
-
-.modal-title{
-    font-size: 18px;
-}
-
-th{
-    text-align: center;
+.form-control{
+    width:30%;
+    margin: 10px 0;
 }

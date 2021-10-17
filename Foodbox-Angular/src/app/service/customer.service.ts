@@ -17,4 +17,16 @@ export class CustomerService {
   customerLogin(loginData:any):Observable<Object>{
     return this.httpClient.post(`${this.baseURL}/${loginData.email}`,loginData);
   }
+
+  getCustomers():Observable<Customer[]>{
+    return this.httpClient.get<Customer[]>(`${this.baseURL}`);
+  }
+
+  searchCustomer(keyword:any):Observable<Customer[]>{
+    return this.httpClient.get<Customer[]>(`${this.baseURL}/search/${keyword}`);
+  }
+
+  deleteCustomer(email:string):Observable<Customer>{
+    return this.httpClient.delete<Customer>(`${this.baseURL}/${email}`)
+  }
 }
