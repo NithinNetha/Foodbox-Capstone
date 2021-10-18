@@ -36,6 +36,11 @@ export class ManageCustomersComponent implements OnInit {
     })
   }
 
+  adminLogout(){
+    this.logService.sendId('');
+    this.router.navigate(['/admin']);
+  }
+
   searchCustomer(){
     if(this.searchKey==''){
       this.getCustomers();

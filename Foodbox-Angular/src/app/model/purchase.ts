@@ -5,5 +5,6 @@ export class Purchase {
     productname:string;
     quantity:number;
     totalcost:number;
+    transactionid:string;
     customer:Customer;
 }

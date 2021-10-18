@@ -1,6 +1,6 @@
+import { Purchase } from 'src/app/model/purchase';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Purchase } from '../model/purchase';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,5 +13,17 @@ export class PurchaseService {
 
   getCustomerOrders(email:string):Observable<Purchase[]>{
     return this.httpClient.get<Purchase[]>(`${this.baseURL}/byEmail/${email}`);
+  }
+
+  getAllPurchase():Observable<Purchase[]>{
+    return this.httpClient.get<Purchase[]>(`${this.baseURL}`);
+  }
+
+  deletePurchase(id:any):Observable<Purchase>{
+    return this.httpClient.delete<Purchase>(`${this.baseURL}/${id}`);
+  }
+
+  searchPurchase(keyword:string):Observable<Purchase[]>{
+    return this.httpClient.get<Purchase[]>(`${this.baseURL}/search/${keyword}`);
   }
 }

@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { ManageCustomersComponent } from './components/manage-customers/manage-customers.component';
+import { ManagePurchaseComponent } from './components/manage-purchase/manage-purchase.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ManageCustomersComponent } from './components/manage-customers/manage-c
     AdminLoginComponent,
     AdminDashboardComponent,
     ManageCustomersComponent,
+    ManagePurchaseComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,10 +13,10 @@
                     <button class="btn bthHead" routerLink="/manageCustomer"><i class="fas fa-users fa-lg"></i> Manage Users</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn bthHead"><i class="fas fa-shopping-basket fa-lg"></i> Manage Purchases</button>
+                    <button class="btn bthHead" routerLink="/managePurchase"><i class="fas fa-shopping-basket fa-lg"></i> Manage Purchases</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn bthHead float-right">Logout</button>
+                    <button class="btn bthHead float-right" (click)="adminLogout()">Logout</button>
                 </li>
             </ul>
         </div>
