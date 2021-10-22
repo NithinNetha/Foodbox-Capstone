@@ -118,7 +118,9 @@ export class HeaderComponent implements OnInit {
 
   CustomerLogout(){
     this.login=0;
-    this.cartService.deleteAllCart();
+    this.cartService.deleteAllCart().subscribe(data=>{
+      console.log('cart empty')
+    });
     sessionStorage.setItem('cust_email',null);
     this.logService.sendId('');
   }

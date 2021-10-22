@@ -49,11 +49,11 @@
                 <img src="{{item.imagepath}}" alt="">
                 <h2>{{item.name}} </h2>
                 <p>{{item.desc}}</p>
-                <p><strong>Price: </strong>${{item.actualPrice}}
+                <p><strong>Price: </strong>₹{{item.actualPrice}}
                     <span *ngIf="item.discount>0" style="color: red;">({{item.discount}}% Discount)</span>
                 </p>
                 <div *ngIf="item.discount>0">
-                    <p><strong>After Discount Price: </strong>${{item.price}}</p>
+                    <p><strong>After Discount Price: </strong>₹{{item.price}}</p>
                 </div>
                 <div *ngIf="item.discount==0">
                     <p></p>

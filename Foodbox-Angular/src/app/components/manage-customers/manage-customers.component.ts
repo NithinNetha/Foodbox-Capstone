@@ -5,6 +5,7 @@ import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
 import { Purchase } from 'src/app/model/purchase';
 import { PurchaseService } from 'src/app/service/purchase.service';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-manage-customers',
@@ -61,7 +62,10 @@ export class ManageCustomersComponent implements OnInit {
     this.customerService.deleteCustomer(email).subscribe(data=>{
       alert("Customer Deleted");
       this.getCustomers();
-    })
+    },error=>{
+      alert("Customer can't be deleted until their orders are deleted")
+    }
+    )
   }
 
 }

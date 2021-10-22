@@ -27,6 +27,10 @@ export class CustomerService {
   }
 
   deleteCustomer(email:string):Observable<Customer>{
-    return this.httpClient.delete<Customer>(`${this.baseURL}/${email}`)
+    return this.httpClient.delete<Customer>(`${this.baseURL}/${email}`);
+  }
+
+  getCustomer(cust_email:string):Observable<Customer>{
+    return this.httpClient.get<Customer>(`${this.baseURL}/${cust_email}`);
   }
 }

@@ -26,4 +26,8 @@ export class PurchaseService {
   searchPurchase(keyword:string):Observable<Purchase[]>{
     return this.httpClient.get<Purchase[]>(`${this.baseURL}/search/${keyword}`);
   }
+
+  buyProducts(buyProdMap:any):Observable<Object>{
+    return this.httpClient.post(`${this.baseURL}`,buyProdMap);
+  }
 }

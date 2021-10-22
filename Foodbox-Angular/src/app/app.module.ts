@@ -15,6 +15,8 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { ManageCustomersComponent } from './components/manage-customers/manage-customers.component';
 import { ManagePurchaseComponent } from './components/manage-purchase/manage-purchase.component';
+import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { ManagePurchaseComponent } from './components/manage-purchase/manage-pur
     AdminDashboardComponent,
     ManageCustomersComponent,
     ManagePurchaseComponent,
+    PaymentGatewayComponent,
+    OrderSummaryComponent,
   ],
   imports: [
     BrowserModule,

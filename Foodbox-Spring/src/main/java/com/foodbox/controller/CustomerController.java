@@ -66,4 +66,10 @@ public class CustomerController {
 		map.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(map);
 	}
+	
+	@GetMapping("/customers/{cust_email}")
+	public Customer getCustomer(@PathVariable String cust_email) {
+		return customerRepository.findByEmail(cust_email);
+		
+	}
 }
