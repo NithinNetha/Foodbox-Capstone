@@ -14,7 +14,8 @@
                     <button class="btn btnHead active"><i class="fas fa-users fa-lg"></i> Manage Users</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btnHead" routerLink="/managePurchase"><i class="fas fa-shopping-basket fa-lg"></i> Manage Purchases</button>
+                    <button class="btn btnHead" routerLink="/managePurchase"><i
+                            class="fas fa-shopping-basket fa-lg"></i> Manage Purchases</button>
                 </li>
                 <li class="nav-item">
                     <button class="btn btnHead float-right" (click)="adminLogout()">Logout</button>
@@ -49,14 +50,15 @@
                     <td>{{cust.address}}</td>
                     <td><button (click)="getActiveOrders(cust.email)" class="btn btn-primary btn-sm" type="button"
                             data-toggle="modal" data-target="#activeOrders">View active Orders</button>
-                        <button (click)="deleteCustomer(cust.email)" class="btn btn-danger btn-sm" style="margin-left:3px;">Delete</button>
+                        <button (click)="deleteCustomer(cust.email)" class="btn btn-danger btn-sm"
+                            style="margin-left:3px;">Delete</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="modal" id="activeOrders">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
                 <!-- Modal Header -->
@@ -67,28 +69,30 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div *ngIf="activeOrders.length!=0">
-                    <table class="table">
-                        <thead class="thead-#bf1e2e">
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                                <th>Cost</th>
-                                <th>Purchase Data</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let pur of activeOrders">
-                                <td>{{pur.productname}}</td>
-                                <td>{{pur.quantity}}</td>
-                                <td>{{pur.totalcost}}</td>
-                                <td>{{pur.dop}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div *ngIf="activeOrders.length==0">
-                    <h5 class="text-center text-danger">No Previous orders</h5>
-                </div>
+                        <table class="table">
+                            <thead class="thead-#bf1e2e">
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Quantity</th>
+                                    <th>Cost</th>
+                                    <th>Purchase Data</th>
+                                    <th>Transaction Id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let pur of activeOrders">
+                                    <td>{{pur.productname}}</td>
+                                    <td>{{pur.quantity}}</td>
+                                    <td>{{pur.totalcost}}</td>
+                                    <td>{{pur.dop}}</td>
+                                    <td>{{pur.transactionid}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div *ngIf="activeOrders.length==0">
+                        <h5 class="text-center text-danger">No Previous orders</h5>
+                    </div>
                 </div>
 
                 <!-- Modal footer -->

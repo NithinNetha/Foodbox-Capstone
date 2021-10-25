@@ -41,5 +41,9 @@ export class OrderSummaryComponent implements OnInit {
     this.todayDate=formatDate(new Date(),'dd MMM, yyyy','en');
     this.transId=sessionStorage.getItem('transId')
   }
+  
+  printOrder(){
+	  window.print();
+  }
 
 }

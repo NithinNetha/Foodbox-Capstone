@@ -8,8 +8,8 @@
                 <strong class="header-title">The Foodbox</strong>
             </div>
             <div *ngIf="login==0" class="text-right">
-                <button class="btn btnMain" type="button" data-toggle="modal" data-target="#loginModal">Login</button>
-                <button class="btn btnMain" type="button" data-toggle="modal" data-target="#registerModal">Register</button>
+                <button class="btn btnMain" type="button" data-toggle="modal" data-target="#loginModal" id="custLogin">Login</button>
+                <button class="btn btnMain" type="button" data-toggle="modal" data-target="#registerModal" id="custRegister">Register</button>
             </div>
             <div *ngIf="login==1" class="text-right">
                 <button class="btn btnMain" (click)="getActiveOrders()" type="button" data-toggle="modal" data-target="#activeOrders">Previous Orders</button>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-default">Login</button>
+                        <button type="submit" id="loginSubmit" class="btn btn-default">Login</button>
                     </div>
                 </form>
 
@@ -109,7 +109,7 @@
         </div>
     </div>
     <div class="modal" id="activeOrders">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
                 <!-- Modal Header -->
@@ -120,24 +120,31 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <table class="table">
-                        <thead class="thead-#bf1e2e">
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                                <th>Cost</th>
-                                <th>Purchase Data</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let pur of activeOrders">
-                                <td>{{pur.productname}}</td>
-                                <td>{{pur.quantity}}</td>
-                                <td>{{pur.totalcost}}</td>
-                                <td>{{pur.dop}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div *ngIf="activeOrders.length!=0">
+                        <table class="table">
+                            <thead class="thead-#bf1e2e">
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Quantity</th>
+                                    <th>Cost</th>
+                                    <th>Purchase Data</th>
+                                    <th>Transaction Id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let pur of activeOrders">
+                                    <td>{{pur.productname}}</td>
+                                    <td>{{pur.quantity}}</td>
+                                    <td>{{pur.totalcost}}</td>
+                                    <td>{{pur.dop}}</td>
+                                    <td>{{pur.transactionid}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div *ngIf="activeOrders.length==0">
+                        <h5 class="text-center text-danger">No Previous orders</h5>
+                    </div>
                 </div>
 
                 <!-- Modal footer -->

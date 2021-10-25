@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   productList:any;
   public cart:Cart=new Cart();
   public products:Cart[];
-  public activeOrders:Purchase[];
+  public activeOrders:Purchase[]=[];
   public totalItem:number=0;
   constructor(private cartService:CartService, 
     private productService:ProductService,
